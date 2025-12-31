@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.git
+.github
+.env
+
+
+#  why docker ignore
+# Faster builds
+# Smaller images
+# No secrets inside image
