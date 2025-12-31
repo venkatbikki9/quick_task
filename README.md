@@ -17,13 +17,10 @@ The app reads its listening port from an environment variable (APP_PORT) and exi
 
 # Port Configuration and Networking
 
-What port the app listens on and why
 
 The application listens on port 5000.
 
-This port is:
-
-Passed using the environment variable APP_PORT
+This port is passed using the environment variable APP_PORT
 
 Used internally by the Flask server inside the container
 
@@ -41,4 +38,5 @@ These ports are different by design.
 On my system, port 8080 is already used by Jenkins, so using a different host port avoids conflicts. The container continues to use port 5000 internally, while Docker maps it to a free port on the host.
 
 This separation reflects real-world setups where applications should not assume which ports are available on the host machine.
+
 
