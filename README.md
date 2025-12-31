@@ -1,3 +1,4 @@
+
 # App Port Demo – Docker, Compose & CI
 
 This project is a small web application built mainly to demonstrate Dockerisation, port handling, Docker Compose usage, and a CI pipeline.
@@ -39,5 +40,69 @@ On my system, port 8080 is already used by Jenkins, so using a different host po
 
 This separation reflects real-world setups where applications should not assume which ports are available on the host machine.
 
+## Trafficflow :
 
+Browser → localhost:8081
+
+        → Docker Compose port mapping
+
+        → Container port 5000
+        
+        → Flask application
+
+## Docker and Logging
+
+1.The application runs inside a Docker container based on python:3.12-slim
+
+2.he container runs as a non-root user
+
+3.All logs go to stdout/stderr
+
+4.Flask’s default logging is used, which means Startup logs, HTTP access logs, Error messages are all visible using docker logs or in CI logs.
+
+No log files are written inside the container.
+
+## CI Pipeline Explanation
+
+The project uses GitHub Actions for CI.
+The pipeline runs automatically on every push to the main branch.
+
+## What each step in the pipeline does
+
+### 1.Checkout source code
+Pulls the repository contents into the CI runner so Docker can access the Dockerfile and application files.
+
+### 2.Login to Docker Hub
+Authenticates securely using GitHub Secrets. Credentials are never stored in the repository.
+
+### 3.Build Docker image
+Builds the Docker image using the Dockerfile in the repository.
+
+### 4.Tag the image
+The image is tagged using the format:
+
+dockerhub-username/port-demo-app:latest
+
+
+### 5.Push the image to Docker Hub
+Uploads the image so it can be pulled and run from any machine.
+
+### 6.Verification step
+Runs the container and calls the /health endpoint to ensure:
+
+-The container starts correctly
+
+-The application responds as expected
+
+-Port configuration works correctly
+
+## How the image is tagged and pushed
+
+The image is tagged during the build step using:
+
+### dockerhub-username/port-demo-app:latest
+
+
+After tagging, the image is pushed to Docker Hub using docker push.
+This makes the image reusable and suitable for deployment or further automation.
 
