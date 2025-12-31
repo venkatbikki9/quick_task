@@ -100,9 +100,10 @@ Runs the container and calls the /health endpoint to ensure:
 
 The image is tagged during the build step using:
 
-### dockerhub-username/port-demo-app:latest
+dockerhub-username/port-demo-app:latest
 
 
 After tagging, the image is pushed to Docker Hub using docker push.
 This makes the image reusable and suitable for deployment or further automation.
+
 
