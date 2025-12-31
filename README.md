@@ -107,3 +107,31 @@ After tagging, the image is pushed to Docker Hub using docker push.
 This makes the image reusable and suitable for deployment or further automation.
 
 
+
+## Design Decisions
+1. Using port 8081 on the host
+
+Why:
+Port 8080 is already in use on my system by Jenkins, so exposing the application on the same port would cause a conflict.
+
+2. Keeping container and host ports different
+
+Why:
+This avoids port conflicts and demonstrates a real-world Docker networking scenario, especially when multiple services run on the same host.
+
+3. Using Docker Compose instead of only docker run
+
+Why:
+Docker Compose clearly documents port mappings, environment variables, and services in one place, making the setup easier to understand and reproduce.
+
+
+# Summary
+
+This project demonstrates:
+
+Clear understanding of application vs container vs host ports
+
+Correct Docker and Docker Compose usage
+
+Secure and automated CI pipeline
+
