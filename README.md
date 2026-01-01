@@ -135,6 +135,9 @@ Correct Docker and Docker Compose usage
 
 Secure and automated CI pipeline
 
+## Architecture Diagram
+
+```mermaid
 flowchart LR
     User[User / Browser]
 
@@ -147,5 +150,3 @@ flowchart LR
     User -->|HTTP request :8081| Host
     Host -->|Port mapping 8081 → 5000| Compose
     Compose -->|Container port 5000| Container
-
-
