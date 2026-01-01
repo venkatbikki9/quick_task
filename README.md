@@ -4,6 +4,22 @@
 This project is a small web application built mainly to demonstrate Dockerisation, port handling, Docker Compose usage, and a CI pipeline.
 The application itself is intentionally simple so that the focus stays on how the app is built, packaged, run, and verified, rather than on business logic.
 
+## Architecture Diagram
+
+```mermaid
+flowchart LR
+    User[User / Browser]
+
+    Host[Host Machine<br/>Port: 8081]
+
+    Compose[Docker Compose]
+
+    Container[Application Container<br/>Flask App<br/>APP_PORT=5000]
+
+    User -->|HTTP request :8081| Host
+    Host -->|Port mapping 8081 → 5000| Compose
+    Compose -->|Container port 5000| Container
+
 ## Application Overview
 
 The application is a Python Flask service with two endpoints:
@@ -134,19 +150,3 @@ Clear understanding of application vs container vs host ports
 Correct Docker and Docker Compose usage
 
 Secure and automated CI pipeline
-
-## Architecture Diagram
-
-```mermaid
-flowchart LR
-    User[User / Browser]
-
-    Host[Host Machine<br/>Port: 8081]
-
-    Compose[Docker Compose]
-
-    Container[Application Container<br/>Flask App<br/>APP_PORT=5000]
-
-    User -->|HTTP request :8081| Host
-    Host -->|Port mapping 8081 → 5000| Compose
-    Compose -->|Container port 5000| Container
