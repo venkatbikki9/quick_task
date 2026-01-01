@@ -19,6 +19,7 @@ flowchart LR
     User -->|HTTP request :8081| Host
     Host -->|Port mapping 8081 → 5000| Compose
     Compose -->|Container port 5000| Container
+```
 
 ## Application Overview
 
@@ -150,3 +151,4 @@ Clear understanding of application vs container vs host ports
 Correct Docker and Docker Compose usage
 
 Secure and automated CI pipeline
+
